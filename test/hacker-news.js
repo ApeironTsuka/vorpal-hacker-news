@@ -1,43 +1,41 @@
 'use strict';
 
-require('assert');
+import assert from 'assert';
+import should from 'should';
+import Vorpal from '@ApeironTsuka/vorpal';
+import hn from '../lib/index.js';
 
-var should = require('should');
-var Vorpal = require('vorpal');
-var hn = require('./../lib/index');
-
-var vorpal;
-var stdout = '';
+let stdout = '', vorpal;
 
 function stdoutFn(data) {
   stdout += data;
   return '';
 }
 
-describe('vorpal-hacker-news', function () {
-  describe('root', function () {
-    before('vorpal preps', function () {
+describe('vorpal-hacker-news', () => {
+  describe('root', () => {
+    before('vorpal preps', () => {
       vorpal = new Vorpal().pipe(stdoutFn).show();
     });
 
-    beforeEach('vorpal preps', function () {
+    beforeEach('vorpal preps', () => {
       stdout = '';
     });
 
-    it('should exist and be a function', function () {
+    it('should exist and be a function', () => {
       should.exist(hn);
       hn.should.be.type('function');
     });
 
-    it('should import into Vorpal', function () {
-      (function () {
+    it('should import into Vorpal', () => {
+      (() => {
         vorpal.use(hn);
       }).should.not.throw();
     });
 
     it('should pull three items from HN.', function (done) {
       this.timeout(20000);
-      vorpal.exec('hacker-news', function (err) {
+      vorpal.exec('hacker-news', (err) => {
         should.not.exist(err);
         stdout.should.containEql('1.');
         stdout.should.containEql('2.');
@@ -49,7 +47,7 @@ describe('vorpal-hacker-news', function () {
 
     it('should pull a custom number of items from HN.', function (done) {
       this.timeout(20000);
-      vorpal.exec('hacker-news -l 2', function (err) {
+      vorpal.exec('hacker-news -l 2', (err) => {
         should.not.exist(err);
         stdout.should.containEql('1.');
         stdout.should.containEql('2.');

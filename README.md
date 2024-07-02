@@ -1,25 +1,22 @@
 # vorpal-hacker-news
 
-<img src="https://travis-ci.org/vorpaljs/vorpal-hacker-news.svg" alt="Build Status" />
-
-Demo extension for [Vorpal.js](https://github.com/dthree/vorpal). This is used in the [Vantage.js](https://github.com/dthree/vantage) demo in tandem with `vorpal-use` to demonstrate how to do a live import of a Vorpal extension.
+Demo extension for [Vorpal.js](https://github.com/ApeironTsuka/vorpal). This is used in the [Vantage.js](https://github.com/ApeironTsuka/vantage) demo in tandem with `vorpal-use` to demonstrate how to do a live import of a Vorpal extension.
 
 ##### Installation
 
 ```bash
-npm install vorpal-hacker-news
-npm install vorpal
+npm install @ApeironTsuka/vorpal-hacker-news
+npm install @ApeironTsuka/vorpal
 ```
 
 ##### Programmatic use
 
 ```js
 // index.js
-var Vorpal = require('vorpal')
-  , hn = require('vorpal-hacker-news')
-  ;
+import Vorpal from '@ApeironTsuka/vorpal';
+import hn from '@ApeironTsuka/vorpal-hacker-news';
 
-var vorpal = Vorpal();
+const vorpal = Vorpal();
 
 vorpal
   .delimiter('node~$')
